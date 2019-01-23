@@ -1,0 +1,25 @@
+{% extends 'bot/base.html' %}
+{% block content %}
+    <div id="chat_window"></div>
+    <form method="post" id="query_form">
+        {% csrf_token %}
+        <input type="text" id="id_question" name='question' placeholder="Enter your query">
+        <input type="submit" value="query">
+    </form>
+    {% if answer %}
+        <div id="answer">{{answer.answer}}</div>
+    {% endif %}
+<script>
+    var chat_window = document.getElementById('chat_window');
+    var query_form = document.getElementById('query_form');
+    var id_question = document.getElementById('id_question');
+    query_form.addEventListener('submit', function(e){
+    //     e.preventDefault();
+        chat_window.innerHTML += '<p> you : '+id_question.value+'</p><p>Bot : Hi !!!!</p>';
+
+        
+    //     query_form.submit();
+    });
+
+</script>
+{% endblock %}
